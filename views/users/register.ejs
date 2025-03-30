@@ -1,0 +1,43 @@
+<% layout('layouts/boilerplate')%>
+    <div class="row mt-5">
+        <div class="col-12 col-md-8 col-lg-6 mx-auto     offset-3">
+            <div class="row p-3 rounded-4 bg-primary-subtle text-primary-emphasis">
+                <div class="col-12 col-md-6 offset-md-3">
+                    <h1 class="text-center">Register </h1>
+                    <form action="/register" class="needs-validation" method="POST" novalidate>
+                        <div class="my-3">
+                            <label for="email">E-mail:</label>
+                            <input type="email" class="form-control" name="user[email]" id="email" placeholder="E-mail"
+                                autofocus required>
+                        </div>
+                        <div class="my-3">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" name="user[username]" id="username"
+                                placeholder="Username" required>
+                        </div>
+                        <div class="my-3">
+                            <label for="password">Password:</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" name="user[password]" id="password"
+                                    placeholder="Password" aria-describedby="basic-addon1" required>
+                                <span class="input-group-text" id="basic-addon1"><button type="button"
+                                        class="toggle-password" id="eye">
+                                        <img id="eye-icon" src="https://cdn-icons-png.flaticon.com/512/159/159604.png"
+                                            alt="Show Password" crossorigin="anonymous" width="20">
+                                    </button></span>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-12 text-center"> <button class="btn btn-primary">Sign up</button></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center mt-3 "> <a href="/login">Already have an account</a></div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="/javascript/pass.js"></script>

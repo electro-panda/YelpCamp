@@ -1,0 +1,76 @@
+<% layout('layouts/boilerplate')%>
+
+    <div class="row p-3 rounded-4 bg-info-subtle text-info-emphasis">
+        <h1 class="text-center">Edit Campground</h1>
+        <div class="col-12 col-md-8 col-lg-6 mx-auto offset-3">
+            <form action="/campgrounds/<%=c._id%>?_method=PUT" method="POST" class="needs-validation"
+                enctype="multipart/form-data" novalidate>
+                <div class="my-3">
+                    <label for="Title">Title</label>
+                    <input type="text" class="form-control" name="campground[title]" id="Title" value="<%=c.title%>"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Enter the Title
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="Location">Location</label>
+                    <input type="text" class="form-control" name="campground[location]" id="Location"
+                        value="<%=c.location%>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Enter the location
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="images" class="form-label">Add Images:</label>
+                    <input class="form-control" type="file" name="images" id="images" multiple>
+                </div>
+                <div class="mb-3">
+                    <% c.images.forEach(function(img,i){ %>
+                        <img class="d-inline mb-2 img-thumbnail" src="<%=img.thumbnail%>" alt="">
+                        <div class="form-check-inline">
+                            <input type="checkbox" name="deleteImages[]" value="<%=img.filename%>" id="image-<%=i%>">
+                        </div>
+                        <label for="image-<%=i%>">Delete</label>
+
+                        <% } )%>
+                </div>
+                <div class="mb-3">
+                    <label for="Description">Description</label>
+                    <textarea class="form-control" name="campground[description]" rows=4 id="Description"
+                        style="height: 100px" required><%=c.description%></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Enter the Description
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="floatingPrice">Price</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">&#8377;</span>
+                        <input type="text" class="form-control" name="campground[price]" id="floatingPrice"
+                            value="<%=c.price%>" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please Enter the Price
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center"><button type="submit" class="btn btn-info ">Update</button></div>
+                </div>
+
+            </form>
+        </div>
+    </div>
