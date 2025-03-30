@@ -17,7 +17,8 @@ const flash = require("connect-flash");
 const user = require("./routes/user");
 const { storeReturnTo } = require("./middleware")
 
-// const dbUrl=process.env.url;
+const dbUrl=process.env.url;
+const Secret=process.env.secret;
 
 //requiring another security package helmet that helps to keep our code safe
 const helmet=require("helmet");     
@@ -102,8 +103,8 @@ app.use(
   );app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
+// 'mongodb://127.0.0.1:27017/yelp-camp'
+mongoose.connect(dbUrl)
     .then(() => {
         console.log("Connection open");
     })
@@ -112,10 +113,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
     })
 
 const store = MongoStore.create({
-        mongoUrl: 'mongodb://127.0.0.1:27017/yelp-camp',//in production that should be your mongoAtlas Url
+        mongoUrl: dbUrl,//in production that should be your mongoAtlas Url
         touchAfter: 24 * 60 * 60,//After a particular period of time session will be updated every time user refreshes a page we can limit the period of time if the data has been changed if not then don't save continuously
         crypto: {
-            secret: 'thisshouldbeabettersecret!'
+            secret: Secret
         }
     });
 
