@@ -17,8 +17,8 @@ const flash = require("connect-flash");
 const user = require("./routes/user");
 const { storeReturnTo } = require("./middleware")
 
-const dbUrl=process.env.url;
-const Secret=process.env.secret;
+const dbUrl=process.env.url || 'mongodb://127.0.0.1:27017/yelp-camp';
+const Secret=process.env.secret || "thisisalsoasecret";
 
 //requiring another security package helmet that helps to keep our code safe
 const helmet=require("helmet");     
@@ -142,7 +142,7 @@ app.use(mongoSanitize({
 //Adding on session
 const sessionConfig = {
     store,//defines where the session data will be stored 
-    secret: "thisismysecret",
+    secret: Secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
